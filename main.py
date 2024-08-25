@@ -43,7 +43,8 @@ deleteBeforeDate = (datetime.date.today() + datetime.timedelta(days=-7))
 
 paths = load_config('config.ini')
 
-for section, cfg in paths.items():
+for section in paths:
+    cfg = paths[section]
     print("prepare", section)
     target = cfg['dst']
     for t in os.scandir(target):
@@ -57,7 +58,8 @@ for section, cfg in paths.items():
         print("creating target folder", path)
         os.mkdir(path)
 
-for section, cfg in paths.items():
+for section in paths:
+    cfg = paths[section]
     print("===========")
     print("backup", section)
     files = os.scandir(cfg['src'])
